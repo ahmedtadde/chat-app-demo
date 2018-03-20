@@ -1,13 +1,56 @@
 const Express = require('express');
 const App = Express();
-const Server = App.listen(5000, () => {
-    console.log('listenning on port 5000');
-});
+const Server = require('http').createServer(App);
+const IO = require('socket.io')(Server);
+const Mongo = require('mongodb').MongoClient;
+const URI = 'mongodb://metron-admin:barca4life@ds117749.mlab.com:17749/prototyping_db';
+
 
 App.use(Express.static('public'));
 
+Mongo.connect(URI, (err, connection) => {
+    if(err) throw err;
+    console.log('MongoDB connection established ...');
+    const db = connection.db('prototyping_db').collection('messages');
+
+    IO.on('connection', (socket) => {
+        console.log('made socket connection ...');
+
+        (() => {
+            db.find().limit(100).sort({_id:1}).toArray((err, data) => {
+                if(err) throw err;
+                socket.emit('new message', data);
+            });
+        })();
 
 
+        socket.on('new message', (data) => {
+            IO.sockets.emit('new message', data);
+        });
+
+
+        socket.on('save message', (data) => {
+            let user = data.user;
+            let message = data.message;
+            try{
+                if(user !== '' && message !== ''){
+                    db.insert({
+                        user: user,
+                        message: message
+                    }, (err, data) => {
+                        if(err) throw err;
+                        socket.emit('message saved',data.ops);
+                    });
+                }
+            }
+            catch (err){
+                throw err;
+            }
+        });
+    });
+
+});
+Server.listen(5000);
 
 
 
