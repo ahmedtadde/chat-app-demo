@@ -1,0 +1,258 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body{
+  padding: 15px;
+  height: 100%;
+  font-size: 12px;
+  font-family: 'Noto Sans', 'leteal', sans-serif;
+  background-color: gainsboro;
+  overflow: hidden;
+}
+
+.hidden{
+  display: none !important;
+}
+
+.wrapper{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #1a2235;
+}
+
+
+.wrapper_inner{
+  position: relative;
+  padding: 10px;
+  margin: 0 auto;
+  min-width: 60%;
+  max-width: 750px;
+  min-height: 50%;
+  max-height: 80%;
+  background-color: floralwhite;
+  border: 2px solid floralwhite;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 3px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.user-signin{
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+}
+
+.user-signin_input{
+  font-weight: bolder;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gainsboro;
+}
+
+.user-signin_input:hover,
+.user-signin_input:focus,
+.user-signin_input:active{
+  border-bottom: 1px solid black;
+}
+
+
+.user-signin_btn{
+  color: floralwhite;
+  background-color: #1a2235;
+  border: none;
+  cursor: pointer;
+}
+
+
+.chat-layout{
+  padding: 10px 0;
+  display: grid;
+  grid-template-rows: 2fr 5fr 2fr 1fr;
+}
+
+/* ASIDE */
+
+.aside{
+    position: relative;
+    /* padding: 10px; */
+    /* display: grid;
+    grid-gap: 5px;
+    grid-template-rows: auto 1fr; */
+    /* grid-template-rows: 1fr 8fr 1fr; */
+    /* border-right: 1px solid gainsboro; */
+}
+
+/* .aside_search{
+    padding: 5px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 5fr;
+}
+
+.aside_search_icon,
+.aside_search_input{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    border: none;
+    outline: none;
+}
+
+.aside_search_input{
+  background-color: transparent;
+  border-bottom: 1px solid gainsboro;
+}
+
+.aside_search_input:hover,
+.aside_search_input:focus{
+  border-bottom: 1px solid black;
+} */
+
+
+.aside_users{
+  position: relative;
+  /* max-height: 70vh; */
+  /* min-height: 50% */
+  /* padding-top:10px; */
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  /* grid-template-rows: 35px; */
+  /* grid-auto-rows: 35px; */
+  overflow-x: scroll;
+}
+
+.user{
+  height: 100%;
+  display: grid;
+  grid-template-rows: 3fr 2fr;
+    /* cursor: pointer; */
+}
+
+.user_icon,
+.user_name{
+    position: relative;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.user_icon{
+  max-width: 32px;
+  max-height: 32px;
+  margin: auto;
+}
+
+.user_name{
+  font-weight: bolder;
+}
+
+/* .client_btn-activate{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: floralwhite;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #1a2235;
+} */
+
+/* MAIN */
+.main{
+    position: relative;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-rows: auto 7fr 3fr;
+}
+
+.main_header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 2em;
+  /* border-bottom: 1px solid gainsboro; */
+}
+
+.main_header_exit-btn{
+  cursor: pointer;
+}
+
+.main_footer{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-top: 1px solid gainsboro; */
+}
+
+
+
+.user-message-input{
+  width: 100%;
+  border: none;
+  border-top: 1px solid gainsboro;
+  font-size: 1.25em;
+  font-weight: bolder;
+}
+
+.user-message-input:hover,
+.user-message-input:focus,
+.user-message-input:active{
+  border-top: 1px solid black;
+  outline: none;
+}
+
+.main_content{
+    padding-left: 10px;
+    position: relative;
+    max-height: 50vh;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: scroll;
+}
+
+.users-message{
+    padding: 5px;
+    margin-bottom: 5px;
+    max-width:60%;
+    align-self: flex-start;
+    background-color: gainsboro;
+    color: black;
+    border-radius: 5px 5px 0px 5px;
+
+}
+
+.user-message{
+    padding: 5px;
+    margin-bottom: 5px;
+    max-width: 60%;
+    align-self: flex-end;
+    background-color: green;
+    color: white;
+    border-radius: 5px 5px 5px 0px;
+}
+
+.users-message_text
+.user-message_text{
+  margin-top: 5px;
+}

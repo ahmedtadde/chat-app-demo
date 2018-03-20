@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo Chat App</title>
+    <link rel="icon" type="image/png" href="assets/chat.png">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|letela" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper_inner">
+            <section class="user-signin" id=signin>
+                <input type="text" placeholder="Enter username" class="user-signin_input"id="username">
+                <button class="user-signin_btn" id="join"><h3>Join!</h3></button>
+            </section>
+            <section class="chat-layout" id="chat">
+                <aside class="aside">
+                    <div class="aside_users" id="users"></div>
+                </aside>
+                <main class="main">
+                    <div class="main_header">
+                        <span class="main_header_exit-btn" id="exit">
+                        <i class="fa fa-sign-out"></i>
+                        </span>
+                    </div>
+                    <div class="main_content" id="output"></div>
+                    <div class="main_footer">
+                        <textarea  class="user-message-input hidden" id="input" data-user=""></textarea>
+                    </div>
+                </main>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+    <!-- <script src="main.js"></script> -->
+</body>
+</html>
