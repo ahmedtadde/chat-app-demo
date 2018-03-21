@@ -172,7 +172,7 @@
                 }
 
                 let isFromThisUser = (dom['input'].getAttribute('data-user') === data.user);
-
+                let message, user, text;
                 if(isFromThisUser){
                     message = createElement('div', [['class', 'user-message']]);
                     user = createElement('span',[['class','user-message_from']]);
