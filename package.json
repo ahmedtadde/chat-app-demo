@@ -2,9 +2,9 @@
   "name": "chat-app-demo",
   "version": "1.0.0",
   "description": "\"Chat App Demo for RAINN\"",
-  "main": "./src/app.js",
+  "main": "./src/server/server.js",
   "scripts": {
-    "start": "nodemon ./src/app.js"
+    "start": "nodemon ./src/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^7.0.1",
+    "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglifycss": "^1.0.9",
     "gulp-uglyfly": "^1.4.2",

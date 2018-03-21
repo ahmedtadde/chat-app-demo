@@ -205,10 +205,6 @@ a{
     box-sizing: border-box;
     padding: 10px;
     max-height: 75vh;
-    /* min-height: 30vh;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: flex-start; */
     overflow-y: scroll;
     border-top: 1px solid gainsboro;
     border-bottom: 1px solid gainsboro;
