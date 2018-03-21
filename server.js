@@ -1,10 +1,11 @@
+require('dotenv').config();
 const Express = require('express');
 const App = Express();
 const Server = require('http').createServer(App);
 const IO = require('socket.io')(Server);
 const Mongo = require('mongodb').MongoClient;
-const URI = 'mongodb://metron-admin:barca4life@ds117749.mlab.com:17749/prototyping_db';
-
+const URI = process.env.MONGO_URI;
+const PORT = process.env.PORT || 3000;
 
 App.use(Express.static('public'));
 
@@ -19,7 +20,7 @@ Mongo.connect(URI, (err, connection) => {
         (() => {
             db.find().limit(100).sort({_id:1}).toArray((err, data) => {
                 if(err) throw err;
-                socket.emit('new message', data);
+                socket.emit('load messages', data);
             });
         })();
 
@@ -39,7 +40,7 @@ Mongo.connect(URI, (err, connection) => {
                         message: message
                     }, (err, data) => {
                         if(err) throw err;
-                        socket.emit('message saved',data.ops);
+                        socket.emit('message saved',data.ops[0]);
                     });
                 }
             }
@@ -47,84 +48,17 @@ Mongo.connect(URI, (err, connection) => {
                 throw err;
             }
         });
+
+
+        socket.on('new user', (data) => {
+            IO.sockets.emit('new user', data);
+        });
+
+        socket.on('user left', (data) => {
+            IO.sockets.emit('user left', data);
+        });
     });
 
 });
-Server.listen(5000);
 
-
-
-
-// const io = require('socket.io')();
-// const mongodb = require('mongodb').MongoClient;
-// const uri = 'mongodb://metron-admin:barca4life@ds117749.mlab.com:17749/prototyping_db';
-
-// mongodb.connect(uri, (err, connection) => {
-
-//     if(err) throw err;
-//     console.log('MongoDB connected ...');
-
-//     let db = connection.db('prototyping_db');
-//     io.on('connection', (socket) => {
-
-
-//         const emitStatus = payload => socket.emit('status', payload);
-
-//         let messages = db.collection('messages');
-//         (() => {
-//             messages.find().limit(100).sort({_id:1}).toArray((err, arr) =>{
-//                 if(err) throw err;
-//                 socket.emit('output', {
-//                     data: arr,
-//                     updateAll: true,
-//                 });
-//             });
-//         })();
-
-//         socket.on('new user', (data) => {
-//             socket.broadcast.emit('output', {
-//                 data: [data],
-//                 updateAll: false,
-//             });
-
-//             // emitStatus({
-//             //     code: 1,
-//             //     message: `${data.user} just joined the chat...`,
-//             // });
-//         });
-
-//         socket.on('input', (data) => {
-//             let user = data.user;
-//             let message = data.message;
-
-//             if(message === ''){
-//                 emitStatus({
-//                     code: 404,
-//                     message: 'request has empty message'
-//                 });
-//             }else{
-//                 messages.insert({
-//                     user: user,
-//                     message: message
-//                 }, (err, data) => {
-//                     if(err) throw err;
-//                     // console.log("new inserted record: ", data);
-//                     socket.broadcast.emit('output', {
-//                         data: data.ops,
-//                         updateAll: false,
-//                     });
-//                     emitStatus({
-//                         code: 200,
-//                         message: 'ok'
-//                     });
-//                 });
-//             }
-//         });
-//     });
-
-//     io.listen(5000);
-//     // Only close the connection when your app is terminating.
-//     // db.close(function (err) {
-//     //     if(err) throw err;
-//     // });
-// });
+Server.listen(PORT);
