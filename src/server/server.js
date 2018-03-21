@@ -11,11 +11,11 @@ app.use(express.static('dist'));
 
 mongo.connect(URI, (err, connection) => {
     if (err) throw err;
-    console.log('MongoDB connection established ...');
+    // console.log('MongoDB connection established ...');
     const db = connection.db('prototyping_db').collection('messages');
 
     io.on('connection', (socket) => {
-        console.log('made socket connection ...');
+        // console.log('made socket connection ...');
 
         (() => {
             db.find().limit(100).sort({
