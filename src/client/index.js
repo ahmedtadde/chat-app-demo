@@ -67,6 +67,10 @@
         }
     }
 
+    const scrollDown = () => {
+        dom['output'].scrollTop = dom['output'].scrollHeight - dom['output'].clientHeight;
+    }
+
     const dom = createDOM(ids, createElement);
 
     let activeUsers = [];
@@ -127,6 +131,14 @@
             }
         };
 
+        window.onpopstate = () => {
+            dom['exit'].click();
+        };
+
+        window.onbeforeunload = () => {
+            dom['exit'].click();
+        }
+
         socket.on('load messages', (data) => {
             // console.log(data);
             if(data.length){
@@ -142,6 +154,8 @@
                     message.appendChild(text);
                     dom['output'].appendChild(message);
                 });
+
+                scrollDown();
             }
         });
 
@@ -189,6 +203,7 @@
                 message.appendChild(text);
                 dom['output'].appendChild(message);
                 dom['input'].value = '';
+                scrollDown();
             }
 
         });
