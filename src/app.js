@@ -1,21 +1,21 @@
 require('dotenv').config();
-const Express = require('express');
-const App = Express();
-const Server = require('http').createServer(App);
-const IO = require('socket.io')(Server);
-const Mongo = require('mongodb').MongoClient;
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+const mongo = require('mongodb').MongoClient;
 const URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3000;
 
-App.use(Express.static('public'));
+app.use(express.static('public'));
 
-Mongo.connect(URI, (err, connection) => {
+mongo.connect(URI, (err, connection) => {
     if(err) throw err;
-    console.log('MongoDB connection established ...');
+    // console.log('MongoDB connection established ...');
     const db = connection.db('prototyping_db').collection('messages');
 
-    IO.on('connection', (socket) => {
-        console.log('made socket connection ...');
+    io.on('connection', (socket) => {
+        // console.log('made socket connection ...');
 
         (() => {
             db.find().limit(100).sort({_id:1}).toArray((err, data) => {
@@ -26,7 +26,7 @@ Mongo.connect(URI, (err, connection) => {
 
 
         socket.on('new message', (data) => {
-            IO.sockets.emit('new message', data);
+            io.sockets.emit('new message', data);
         });
 
 
@@ -51,14 +51,14 @@ Mongo.connect(URI, (err, connection) => {
 
 
         socket.on('new user', (data) => {
-            IO.sockets.emit('new user', data);
+            io.sockets.emit('new user', data);
         });
 
         socket.on('user left', (data) => {
-            IO.sockets.emit('user left', data);
+            io.sockets.emit('user left', data);
         });
     });
 
 });
 
-Server.listen(PORT);
+server.listen(PORT);
