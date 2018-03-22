@@ -7,7 +7,13 @@ const babel = require('gulp-babel');
 const uglyfly = require('gulp-uglyfly');
 
 
-gulp.task('minify-css-files', () => {
+gulp.task('copy-html-file', () => {
+    gulp.src('./src/client/index.html')
+        .pipe(plumber())
+        .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('minify-css-file', () => {
     gulp.src('./src/client/styles.css')
         .pipe(plumber())
         .pipe(autoprefixer({
@@ -22,7 +28,7 @@ gulp.task('minify-css-files', () => {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('minify-js-scripts', () => {
+gulp.task('minify-js-script', () => {
     gulp.src('src/client/index.js')
         .pipe(plumber())
         .pipe(babel({
@@ -34,8 +40,11 @@ gulp.task('minify-js-scripts', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('./src/client/styles.css', ['minify-css-files']);
-    gulp.watch('./src/client/index.js', ['minify-js-scripts']);
+
+    gulp.watch('./src/client/index.html', ['copy-html-file']);
+    gulp.watch('./src/client/styles.css', ['minify-css-file']);
+    gulp.watch('./src/client/index.js', ['minify-js-script']);
+
 });
 
-gulp.task('default', ['minify-css-files','minify-js-scripts', 'watch']);
+gulp.task('default', ['copy-html-file','minify-css-file','minify-js-script', 'watch']);

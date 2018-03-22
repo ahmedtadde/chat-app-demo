@@ -56,7 +56,7 @@ a{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: 3px;
   display: grid;
-  grid-template-rows: 2fr 2fr 2fr 7fr 2fr;
+  grid-template-rows: 1fr 2fr 3fr 15fr 4fr;
 }
 
 @media (max-width: 768px){
@@ -68,13 +68,15 @@ a{
     padding: 0;
     min-width: 100%;
     max-width: 100%;
-    height: 100vh;
+    min-height: 100%;
+    max-height: 100%;
+    /* height: 100vh; */
     background-color: white;
     border: none;
     box-shadow: none;
     border-radius: none;
-    display: grid;
-    grid-template-rows: 10vh 10vh 10vh 55vh 10vh;
+    /* display: grid; */
+    /* grid-template-rows: 10vh 5vh 5vh 70vh 10vh; */
   }
 }
 
@@ -102,18 +104,18 @@ a{
   padding: 5px;
   font-size: 1.25em;
   font-weight: bolder;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid grey;
+  background-color: gainsboro;
+  border: none !important;
+  outline: none !important;
+  /* border-bottom: 1px solid grey; */
   text-align: center;
 }
 
-.user-signin_input:hover,
+/* .user-signin_input:hover,
 .user-signin_input:focus,
 .user-signin_input:active{
   border-bottom: 1px solid black;
-}
+} */
 
 
 .user-signin_btn{
@@ -169,21 +171,26 @@ a{
 }
 
 .user-input{
+  position: relative;
+}
+
+.user-input_textarea{
+  height: 100%;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   border: none;
   font-size: 1.25em;
   font-weight: bolder;
   background-color: gainsboro;
 }
 
-.user-input:hover,
-.user-input:focus,
-.user-input:active{
+.user-input_textarea:hover,
+.user-input_textarea:focus,
+.user-input_textarea:active{
   outline: none;
 }
 
-.user-submit{
+/* .user-submit{
   padding: 5px;
   display: flex;
   justify-content: center;
@@ -198,13 +205,13 @@ a{
 
 .user-submit_btn:before{
   content: "Send \27A4";
-}
+} */
 
 .users-output{
     position: relative;
     box-sizing: border-box;
     padding: 10px;
-    max-height: 75vh;
+    /* max-height: 70vh; */
     overflow-y: scroll;
     border-top: 1px solid gainsboro;
     border-bottom: 1px solid gainsboro;
@@ -258,17 +265,15 @@ a{
 .header-link,
 .header_ctrls_refresh,
 .header_ctrls_signout{
-  padding: 0 5px;
+  padding: 0 10px;
   font-weight: bolder;
 }
 
-.header_ctrls_refresh:before{
-  content: "\27F3";
+.header_ctrls_refresh{
   font-size: 1.75em;
 }
 
-.header_ctrls_signout:after{
-  content: "\2715";
+.header_ctrls_signout{
   font-size: 1.35em;
 }
 
