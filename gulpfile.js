@@ -39,6 +39,7 @@ gulp.task('minify-js-script', () => {
                 }
               }]]
             })
+        )
         .pipe(uglyfly())
         .pipe(rename('index.min.js'))
         .pipe(gulp.dest('./dist/'));
