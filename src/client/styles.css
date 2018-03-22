@@ -9,6 +9,7 @@ body{
   font-size: 12px;
   font-family: 'Noto Sans', 'leteal', sans-serif;
   background-color: gainsboro;
+  overflow: hidden;
 }
 
 a{
@@ -106,6 +107,7 @@ a{
   font-weight: bolder;
   background-color: gainsboro;
   border: none !important;
+  border-radius: 0 !important;
   outline: none !important;
   /* border-bottom: 1px solid grey; */
   text-align: center;
@@ -178,7 +180,8 @@ a{
   height: 100%;
   width: 100%;
   padding: 10px;
-  border: none;
+  border: none !important;
+  outline: none !important;
   font-size: 1.25em;
   font-weight: bolder;
   background-color: gainsboro;
@@ -211,10 +214,18 @@ a{
     position: relative;
     box-sizing: border-box;
     padding: 10px;
-    /* max-height: 70vh; */
     overflow-y: scroll;
     border-top: 1px solid gainsboro;
     border-bottom: 1px solid gainsboro;
+}
+
+
+@media (min-width:769px){
+
+  .users-output{
+    height: auto;
+    max-height: 70vh;
+  }
 }
 
 .users-message{
