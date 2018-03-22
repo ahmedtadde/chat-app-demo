@@ -39,8 +39,8 @@
         if(username){
             dom['username'].value = '';
             dom['input'].setAttribute('data-user', username);
-            dom['signin'].classList.add('hidden');
-            dom['users'].classList.remove('hidden');
+            dom['signin'].classList.add('no-display');
+            dom['users'].classList.remove('no-display');
             dom['input'].classList.remove('hidden');
 
             socket.emit('new user', {
@@ -110,9 +110,9 @@
         dom['exit'].onclick = () => {
             let user = dom['input'].getAttribute('data-user');
             if(user){
-                dom['users'].classList.add('hidden');
+                dom['users'].classList.add('no-display');
                 dom['username'].value = '';
-                dom['signin'].classList.remove('hidden');
+                dom['signin'].classList.remove('no-display');
                 dom['input'].classList.add('hidden');
                 dom['input'].value = '';
                 dom['input'].setAttribute('data-user','');

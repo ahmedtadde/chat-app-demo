@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <div class="wrapper_inner">
-            <div class="header">
+            <section class="header">
                 <div class="header_links">
                     <a href="https://github.com/ahmedtadde/chat-app-demo" target="_blank" class="header-link pointer">Github</a>
                 </div>
@@ -20,16 +20,30 @@
                     <span class="header_ctrls_refresh pointer" id="refresh">&#10227;</span>
                     <span class="header_ctrls_signout pointer" id="exit">&#10005;</span>
                 </div>
-            </div>
-            <div class="user-signin" id="signin">
-                <input type="text" placeholder="Enter username" class="user-signin_input" id="username">
-                <button class="user-signin_btn pointer" id="signin-btn">Sign In</button>
-            </div>
-            <div class="active-users hidden" id="users"></div>
-            <div class="users-output" id="output"></div>
-            <div class="user-input">
+            </section>
+
+            <section>
+                <div class="user-signin" id="signin">
+                    <input type="text" placeholder="Enter username" class="user-signin_input" id="username">
+                    <button class="user-signin_btn pointer" id="signin-btn">Sign In</button>
+                </div>
+                <div class="active-users no-display" id="users"></div>
+            </section>
+
+            <section class="users-output" id="output"></section>
+
+            <section class="user-input">
                 <textarea  class="user-input_textarea hidden" id="input" placeholder="Type Message..." data-user=""></textarea>
-            </div>
+            </section>
+
+
+
+
+
+
+
+
+
             <!-- SUBMIT BUTTON, un-comment to add it back -->
             <!-- <div class="user-submit pointer" id="submit">
                 <span class="user-submit_btn"></span>
