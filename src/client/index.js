@@ -1,5 +1,6 @@
 (function(){
     const socket = io();
+    // include 'submit' for send button...if adding it back
     const ids = ['input', 'submit', 'output', 'refresh' ,'exit','username','signin','signin-btn','users'];
 
     const createDOM = (arr, fn) => {
@@ -95,9 +96,10 @@
             }
         };
 
-        dom['submit'].onclick = () => {
-            emitMessage();
-        };
+        //un-comment this if dispaying a submit button for message input
+        // dom['submit'].onclick = () => {
+        //     emitMessage();
+        // };
 
         dom['refresh'].onclick = () => {
             dom['username'].value = '';
