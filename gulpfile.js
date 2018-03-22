@@ -17,7 +17,7 @@ gulp.task('minify-css-file', () => {
     gulp.src('./src/client/styles.css')
         .pipe(plumber())
         .pipe(autoprefixer({
-            browsers: ['last 50 versions'],
+            browsers: ["last 50 versions", ">= 0.1%","ie 6-11"],
             cascade: false
         }))
         .pipe(uglifycss({
@@ -32,8 +32,13 @@ gulp.task('minify-js-script', () => {
     gulp.src('src/client/index.js')
         .pipe(plumber())
         .pipe(babel({
-            presets: ['env']
-        }))
+            "presets": [
+              ["env", {
+                "targets": {
+                  "browsers": ["last 50 versions", ">= 0.1%","ie 6-11"]
+                }
+              }]]
+            })
         .pipe(uglyfly())
         .pipe(rename('index.min.js'))
         .pipe(gulp.dest('./dist/'));
